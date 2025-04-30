@@ -3,111 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الشناوي   - التقيمات الأسبوعية   </title>
+    <title>التقيمات الاسبوعية -  الشناوي</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --main-bg-color: #ffffff;
-            --text-color: #333333;
-            --button-color: #8a2be2;
-            --footer-bg: #1e90ff;
-            --nav-bg: #f8f9fa;
-            --section-bg: #ffffff;
-            --border-color: #e0e0e0;
-            --card-bg: #f9f9f9;
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
-        .dark-mode {
-            --main-bg-color: #121212;
-            --text-color: #f5f5f5;
-            --button-color: #1e90ff;
-            --footer-bg: #0d47a1;
-            --nav-bg: #1a1a1a;
-            --section-bg: #1e1e1e;
-            --border-color: #333333;
-            --card-bg: #2a2a2a;
+        [data-theme="dark"] {
+            --primary-color: #5e81ac;
+            --secondary-color: #81a1c1;
+            --accent-color: #88c0d0;
+            --text-color: #eceff4;
+            --light-text: #e5e9f0;
+            --bg-color: #2e3440;
+            --card-bg: #3b4252;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
-            background-color: var(--main-bg-color);
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
+            direction: rtl;
         }
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            margin-left: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+            background-color: rgba(79, 195, 247, 0.1);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
         }
 
         h1 {
             text-align: center;
-            margin: 30px 0;
-            color: var(--button-color);
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
 
         .subjects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
         .subject-card {
             background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--border-color);
             cursor: pointer;
-            transition: transform 0.3s;
-            animation: zoomIn 0.5s ease-out;
-            animation-fill-mode: both;
-        }
-
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            transition: var(--transition);
         }
 
         .subject-card:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .subject-card i {
             font-size: 2.5rem;
-            color: var(--button-color);
-            margin-bottom: 15px;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
         }
 
         .subject-card h3 {
-            margin-bottom: 10px;
-            color: var(--button-color);
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
 
+        .subject-card p {
+            color: var(--text-color);
+        }
+
+        /* Modal Styles */
         .weeks-modal {
             display: none;
             position: fixed;
@@ -115,138 +152,222 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease-out;
         }
 
         .weeks-container {
             background-color: var(--card-bg);
+            border-radius: 8px;
             width: 90%;
             max-width: 800px;
             max-height: 80vh;
             overflow-y: auto;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transform: scale(0.9);
-            animation: zoomInModal 0.3s ease-out forwards;
-        }
-
-        @keyframes zoomInModal {
-            to { transform: scale(1); }
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
         }
 
         .weeks-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--button-color);
+            margin-bottom: 1.5rem;
         }
 
         .weeks-header h2 {
-            color: var(--button-color);
+            color: var(--primary-color);
         }
 
         .close-btn {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 2rem;
             cursor: pointer;
             color: var(--text-color);
         }
 
         .weeks-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
         }
 
         .week-item {
-            background-color: var(--section-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            padding: 15px;
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 6px;
             text-align: center;
-            transition: all 0.3s;
-        }
-
-        .week-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .week-item h4 {
-            margin-bottom: 10px;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
         }
 
         .download-btn {
-            background-color: var(--button-color);
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: opacity 0.3s;
-            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
             text-decoration: none;
-            display: block;
+            transition: var(--transition);
         }
 
         .download-btn:hover {
-            opacity: 0.9;
+            background-color: var(--primary-color);
+        }
+
+        .download-btn i {
+            margin-left: 0.5rem;
         }
 
         .no-link {
-            background-color: #f39c12;
-            color: white;
-            padding: 8px;
-            border-radius: 5px;
-            font-size: 14px;
+            color: #999;
+            font-style: italic;
         }
 
-        .theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: var(--button-color);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-about {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .social-section {
+            margin: 1rem 0;
+            width: 100%;
+        }
+
+        .social-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--light-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            transition: transform 0.3s;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: var(--transition);
+            font-size: 1.2rem;
         }
 
-        .theme-toggle:hover {
-            transform: rotate(30deg) scale(1.1);
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
         }
 
-        @media (max-width: 768px) {
-            .subjects-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        .copyright {
+            margin-top: 1rem;
+            font-size: 1rem;
+            width: 100%;
+            padding-top: 1rem;
+        }
+
+        /* Telegram Float Button */
+        .telegram-float {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #4d4d4d;
+            box-shadow: 3px 2px 45px 0px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .telegram-float:hover {
+            transform: scale(1.1) rotate(15deg);
+            color: white;
+        }
+
+        .telegram-float .filled {
+            position: absolute;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: #0088cc;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .telegram-float:hover .filled {
+            height: 100%;
+        }
+
+        .telegram-float svg {
+            position: relative;
+            z-index: 1;
+            width: 25px;
+            height: 25px;
+        }
+
+        /* Animation */
+        .subject-card {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            
-            .weeks-list {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-        }
-
-        @media (max-width: 480px) {
-            .subjects-grid {
-                grid-template-columns: 1fr;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -256,66 +377,129 @@
         .subject-card:nth-child(4) { animation-delay: 0.4s; }
         .subject-card:nth-child(5) { animation-delay: 0.5s; }
         .subject-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @media (max-width: 768px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .weeks-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .telegram-float {
+                width: 45px;
+                height: 45px;
+                bottom: 1.5rem;
+                left: 1.5rem;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>التقييمات الأسبوعية</h1>
-        
-        <div class="subjects-grid">
-            <div class="subject-card" onclick="openWeeksModal('arabic', 'اللغة العربية')">
-                <i class="fas fa-book-open"></i>
-                <h3>اللغة العربية</h3>
-                <p>تقييمات أسبوعية لمادة اللغة العربية</p>
-            </div>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span>الشناوي</span>
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>التقييمات الأسبوعية</h1>
             
-            <div class="subject-card" onclick="openWeeksModal('english', 'اللغة الإنجليزية')">
-                <i class="fas fa-language"></i>
-                <h3>اللغة الإنجليزية</h3>
-                <p>تقييمات أسبوعية لمادة اللغة الإنجليزية</p>
-            </div>
-            
-            <div class="subject-card" onclick="openWeeksModal('math', 'الرياضيات')">
-                <i class="fas fa-square-root-alt"></i>
-                <h3>الرياضيات</h3>
-                <p>تقييمات أسبوعية لمادة الرياضيات</p>
-            </div>
-            
-            <div class="subject-card" onclick="openWeeksModal('philosophy', 'الفلسفة')">
-                <i class="fas fa-brain"></i>
-                <h3>الفلسفة</h3>
-                <p>تقييمات أسبوعية لمادة الفلسفة</p>
-            </div>
-            
-            <div class="subject-card" onclick="openWeeksModal('history', 'التاريخ')">
-                <i class="fas fa-landmark"></i>
-                <h3>التاريخ</h3>
-                <p>تقييمات أسبوعية لمادة التاريخ</p>
-            </div>
-            
-            <div class="subject-card" onclick="openWeeksModal('science', 'العلوم المتكاملة')">
-                <i class="fas fa-flask"></i>
-                <h3>العلوم المتكاملة</h3>
-                <p>تقييمات أسبوعية لمادة العلوم المتكاملة</p>
+            <div class="subjects-grid">
+                <div class="subject-card" onclick="openWeeksModal('arabic', 'اللغة العربية')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>اللغة العربية</h3>
+                    <p>تقييمات أسبوعية لمادة اللغة العربية</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('english', 'اللغة الإنجليزية')">
+                    <i class="fas fa-language"></i>
+                    <h3>اللغة الإنجليزية</h3>
+                    <p>تقييمات أسبوعية لمادة اللغة الإنجليزية</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('math', 'الرياضيات')">
+                    <i class="fas fa-square-root-alt"></i>
+                    <h3>الرياضيات</h3>
+                    <p>تقييمات أسبوعية لمادة الرياضيات</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('philosophy', 'الفلسفة')">
+                    <i class="fas fa-brain"></i>
+                    <h3>الفلسفة</h3>
+                    <p>تقييمات أسبوعية لمادة الفلسفة</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('history', 'التاريخ')">
+                    <i class="fas fa-landmark"></i>
+                    <h3>التاريخ</h3>
+                    <p>تقييمات أسبوعية لمادة التاريخ</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('science', 'العلوم المتكاملة')">
+                    <i class="fas fa-flask"></i>
+                    <h3>العلوم المتكاملة</h3>
+                    <p>تقييمات أسبوعية لمادة العلوم المتكاملة</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="weeks-modal" id="weeksModal">
-        <div class="weeks-container">
-            <div class="weeks-header">
-                <h2 id="modalSubjectTitle">التقييمات الأسبوعية</h2>
-                <button class="close-btn" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="weeks-list" id="weeksList">
+        <div class="weeks-modal" id="weeksModal">
+            <div class="weeks-container">
+                <div class="weeks-header">
+                    <h2 id="modalSubjectTitle">التقييمات الأسبوعية</h2>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="weeks-list" id="weeksList">
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
-    <button class="theme-toggle" id="themeToggle">
-        <i class="fas fa-moon" id="themeIcon"></i>
-    </button>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>من نحن</h3>
+                    <p>أنا محمد مصطفى، طالب بالصف الأول الثانوي، وعملت هذا الموقع علشان أساعد زملائي الطلاب نوفر وقتنا في البحث عن الكتب والتقييمات.</p>
+                </div>
+                
+                <div class="social-section">
+                    <h4>وسائل التواصل</h4>
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/profile.php?id=100090831465254" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mohamedmostafashen/" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/mohamedshen12" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>جميع الحقوق محفوظة &copy; محمد مصطفى عباس 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://t.me/mohamedshen12" class="telegram-float" target="_blank" aria-label="Telegram">
+        <div class="filled"></div>
+        <svg version="1.1" viewBox="0 0 100 100">
+            <path d="M95,9.9c-1.3-1.1-3.4-1.2-7-0.1c0,0,0,0,0,0c-2.5,0.8-24.7,9.2-44.3,17.3c-17.6,7.3-31.9,13.7-33.6,14.5c-1.9,0.6-6,2.4-6.2,5.2c-0.1,1.8,1.4,3.4,4.3,4.7c3.1,1.6,16.8,6.2,19.7,7.1c1,3.4,6.9,23.3,7.2,24.5c0.4,1.8,1.6,2.8,2.2,3.2c0.1,0.1,0.3,0.3,0.5,0.4c0.3,0.2,0.7,0.3,1.2,0.3c0.7,0,1.5-0.3,2.2-0.8c3.7-3,10.1-9.7,11.9-11.6c7.9,6.2,16.5,13.1,17.3,13.9c0,0,0.1,0.1,0.1,0.1c1.9,1.6,3.9,2.5,5.7,2.5c0.6,0,1.2-0.1,1.8-0.3c2.1-0.7,3.6-2.7,4.1-5.4c0-0.1,0.1-0.5,0.3-1.2c3.4-14.8,6.1-27.8,8.3-38.7c2.1-10.7,3.8-21.2,4.8-26.8c0.2-1.4,0.4-2.5,0.5-3.2C96.3,13.5,96.5,11.2,95,9.9z M30,58.3l47.7-31.6c0.1-0.1,0.3-0.2,0.4-0.3c0,0,0,0,0,0c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.2-0.1c-0.1,0.1-0.2,0.4-0.4,0.6L66,38.1c-8.4,7.7-19.4,17.8-26.7,24.4c0,0,0,0,0,0.1c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1-0.1,0.1c0,0.1,0,0.1-0.1,0.2c0,0,0,0.1,0,0.1c0,0,0,0,0,0.1c-0.5,5.6-1.4,15.2-1.8,19.5c0,0,0,0,0-0.1C36.8,81.4,31.2,62.3,30,58.3z" fill="currentColor"></path>
+        </svg>
+    </a>
 
     <script>
         const downloadLinks = {
@@ -440,18 +624,20 @@
 
         const currentTheme = localStorage.getItem('theme');
         if (currentTheme === 'dark') {
-            body.classList.add('dark-mode');
+            body.setAttribute('data-theme', 'dark');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
 
         themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
             } else {
-                localStorage.setItem('theme', 'light');
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
             }
         });

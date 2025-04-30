@@ -1,42 +1,44 @@
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = document.getElementById('themeIcon');
-const body = document.body;
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const body = document.body;
 
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'light') {
-    body.classList.add('light-mode');
-    themeIcon.classList.replace('fa-sun', 'fa-moon');
-}
-
-themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
+    // Check for saved theme preference
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
     
-    if (body.classList.contains('light-mode')) {
-        localStorage.setItem('theme', 'light');
+    if (currentTheme === 'dark') {
         themeIcon.classList.replace('fa-sun', 'fa-moon');
-    } else {
-        localStorage.setItem('theme', 'dark');
-        themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
-});
 
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('active');
-});
-
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
+    // Theme toggle functionality
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        if (newTheme === 'dark') {
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        } else {
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
     });
-});
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+    // Smooth scrolling for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // Adjust for fixed header
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 });
