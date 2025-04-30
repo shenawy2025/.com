@@ -9,93 +9,7 @@
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
-/* Footer - Centered and Simplified */
-footer {
-    background-color: var(--primary-color);
-    color: var(--light-text);
-    padding: 3rem 0;
-    margin-top: 2rem;
-    text-align: center;
-}
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.footer-about {
-    margin-bottom: 0.5rem;
-}
-
-.footer-about h3 {
-    font-size: 1.8rem; /* Larger font size */
-    margin-bottom: 1.2rem;
-    color: var(--accent-color);
-}
-
-.footer-about p {
-    line-height: 1.8;
-    font-size: 1.1rem; /* Slightly larger text */
-}
-
-.social-section {
-    text-decoration: none;
-
-    margin: 1rem 0;
-    width: 100%;
-}
-
-.social-section h4 {
-    text-decoration: none;
-
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
-    color: var(--light-text);
-}
-
-.social-links {
-    text-decoration: none;
-
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.social-links a {
-    text-decoration: none;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px; /* Slightly larger */
-    height: 45px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: var(--light-text);
-    transition: var(--transition);
-    font-size: 1.2rem; /* Larger icons */
-}
-
-.social-links a:hover {
-    text-decoration: none;
-
-    transform: translateY(-5px);
-    background-color: var(--accent-color);
-    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
-}
-
-.copyright {
-    margin-top: 1rem;
-    font-size: 1rem; /* Larger font */
-    width: 100%;
-    padding-top: 1rem;
-    /* Removed border completely */
-}
 [data-theme="dark"] {
     --primary-color: #5e81ac;
     --secondary-color: #81a1c1;
@@ -124,7 +38,6 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     direction: rtl;
-    transition: var(--transition);
 }
 
 .container {
@@ -134,7 +47,6 @@ body {
     padding: 0 15px;
 }
 
-/* Header Styles */
 header {
     background-color: var(--card-bg);
     box-shadow: var(--shadow);
@@ -159,7 +71,6 @@ header {
     color: var(--primary-color);
     font-weight: 700;
     font-size: 1.5rem;
-    transition: var(--transition);
 }
 
 .logo i {
@@ -191,15 +102,39 @@ header {
     background-color: rgba(79, 195, 247, 0.2);
 }
 
-/* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--light-text);
     padding: 10rem 0 5rem;
-    text-align: center;
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
     margin-bottom: -5rem;
-    transition: var(--transition);
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: right;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .hero h1 {
@@ -215,7 +150,6 @@ header {
     animation: fadeIn 1.5s ease;
 }
 
-/* Button Styles */
 .btn {
     display: inline-block;
     background-color: var(--accent-color);
@@ -248,14 +182,13 @@ header {
     color: var(--light-text);
 }
 
-/* Features Section */
 #features {
     padding: 6rem 0;
     background-color: var(--bg-color);
     scroll-margin-top: 80px;
 }
 
-#features h2, #content h2, #about h2, #contact h2 {
+.section-title {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 3rem;
@@ -263,7 +196,7 @@ header {
     position: relative;
 }
 
-#features h2:after, #content h2:after, #about h2:after, #contact h2:after {
+.section-title:after {
     content: '';
     display: block;
     width: 80px;
@@ -311,7 +244,6 @@ header {
     color: var(--primary-color);
 }
 
-/* Content Section */
 #content {
     padding: 6rem 0;
     background-color: var(--card-bg);
@@ -359,7 +291,6 @@ header {
     margin-bottom: 1.5rem;
 }
 
-/* About Section */
 #about {
     padding: 6rem 0;
     background-color: var(--bg-color);
@@ -386,7 +317,6 @@ header {
     font-weight: 700;
 }
 
-/* Contact Section */
 #contact {
     padding: 6rem 0;
     background-color: var(--card-bg);
@@ -423,14 +353,83 @@ header {
     margin-left: 1rem;
 }
 
-
-.copyright {
+footer {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 3rem 0;
+    margin-top: 2rem;
     text-align: center;
-    padding-top: 1.5rem;
-    font-size: 0.9rem;
 }
 
-/* Telegram Float (Uiverse Style) */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-about {
+    margin-bottom: 0.5rem;
+}
+
+.footer-about h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    color: var(--accent-color);
+}
+
+.footer-about p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.social-section {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.social-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    color: var(--light-text);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--light-text);
+    transition: var(--transition);
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    background-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
+}
+
+.copyright {
+    margin-top: 1rem;
+    font-size: 1rem;
+    width: 100%;
+    padding-top: 1rem;
+}
+
 .telegram-float {
     position: fixed;
     bottom: 2rem;
@@ -476,7 +475,80 @@ header {
     height: 25px;
 }
 
-/* Animations */
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+    transform: translateX(-150%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+}
+
+.install-prompt.show {
+    transform: translateX(0);
+}
+
+.install-prompt img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+}
+
+.install-prompt-content {
+    flex: 1;
+}
+
+.install-prompt h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.install-prompt p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.install-prompt-buttons {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.install-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    flex: 1;
+}
+
+.install-btn:hover {
+    background-color: var(--primary-color);
+}
+
+.cancel-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0 5px;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -504,24 +576,38 @@ header {
     }
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero {
         padding: 8rem 0 4rem;
         clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
     }
     
+    .hero-content {
+        flex-direction: column-reverse;
+    }
+    
+    .hero-text {
+        text-align: center;
+    }
+    
     .hero h1 {
         font-size: 2rem;
+    }
+    
+    .hero-image img {
+        width: 200px;
+        height: 200px;
     }
     
     .features, .categories {
         grid-template-columns: 1fr;
     }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
+
+    .install-prompt {
+        left: 10px;
+        right: 10px;
+        max-width: none;
+        bottom: 70px;
     }
 }
 

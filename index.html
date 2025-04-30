@@ -10,6 +10,18 @@
 </head>
 <body>
 
+    <div class="install-prompt" id="installPrompt">
+        <img src="https://i.imgur.com/JqYeYnW.png" alt="لوجو منصة الشناوي">
+        <div class="install-prompt-content">
+            <h4>تثبيت منصة الشناوي</h4>
+            <p>هل تريد تثبيت التطبيق على جهازك؟</p>
+            <div class="install-prompt-buttons">
+                <button class="install-btn" id="installBtn">نعم</button>
+                <button class="cancel-btn" id="cancelInstallBtn">×</button>
+            </div>
+        </div>
+    </div>
+
     <a href="https://t.me/mohamedshen12" class="telegram-float" target="_blank" aria-label="Telegram">
         <div class="filled"></div>
         <svg version="1.1" viewBox="0 0 100 100">
@@ -19,53 +31,61 @@
 
     <header>
         <div class="container header-container">
-            <a href="#top" class="logo">
-                <span>الشناوي</span>
+            <a href="#home" class="logo">
+                <span>منصة الشناوي</span>
                 <i class="fas fa-graduation-cap"></i>
             </a>
             
-            <div class="nav-links">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-sun" id="themeIcon"></i>
-                </button>
-                
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
     </header>
 
     <section class="hero" id="home">
         <div class="container">
-            <h1>منصة الشناوي للصف الأول الثانوي</h1>
-            <p>نقدم لكم سهولة للوصول الى الكتب المدرسية و الخارجية و التقيمات المدرسية في مكان واحد لمساعدة طلاب الصف الأول الثانوي </p>
-            <a href="#content" class="btn">استكشف المحتوى</a>
-            <a href="#features" class="btn btn-outline">المميزات</a>
-        </div>
-    </section>
-
-    <section id="features">
-        <div class="container">
-            <h2>مميزات منصتنا</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-book-open"></i>
-                    <h3>منهج متكامل</h3>
-                    <p>جميع المواد الدراسية اللي انت عايزها موجودة</p>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>منصة الشناوي للصف الأول الثانوي</h1>
+                    <p>نقدم لكم سهولة الوصول إلى الكتب المدرسية والكتب الخارجية والتقييمات المدرسية في مكان واحد لمساعدة طلاب الصف الأول الثانوي</p>
+                    <div class="hero-buttons">
+                        <a href="#content" class="btn">استكشف المحتوى</a>
+                        <a href="#features" class="btn btn-outline">المميزات</a>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-download"></i>
-                    <h3>سهولة في التنزيل</h3>
-                    <p>هتنزل الملف بكل سهولة بدون الدخول في اعلانات</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <h3>التحديثات</h3>
-                    <p>هناك تحديث كل اسبوع لاضافة التقيمات</p>
+                <div class="hero-image">
+                    <img src="https://i.postimg.cc/Dz6mGKXY/front-view-male-student-green-checkered-shirt-wearing-black-backpack-holding-files-blue-wall.png" alt="#" id="person-image">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="content" style="background-color: var(--card-bg);">
+    <section id="features">
         <div class="container">
-            <h2>أقسام المحتوى</h2>
+            <h2 class="section-title">مميزات منصتنا</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-book-open"></i>
+                    <h3>منهج متكامل</h3>
+                    <p>جميع المواد الدراسية التي تحتاجها موجودة في مكان واحد</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-download"></i>
+                    <h3>سهولة التحميل</h3>
+                    <p>تنزيل الملفات بكل سهولة بدون إعلانات مزعجة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <h3>تحديثات مستمرة</h3>
+                    <p>تحديثات أسبوعية لإضافة التقييمات والمواد الجديدة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content">
+        <div class="container">
+            <h2 class="section-title">أقسام المحتوى</h2>
             <div class="categories">
                 <div class="category-card">
                     <i class="fas fa-book"></i>
@@ -82,7 +102,7 @@
                 <div class="category-card">
                     <i class="fas fa-clipboard-check"></i>
                     <h3>التقييمات</h3>
-                    <p>التقيمات الصفية و الاسبوعية و المنزلية</p>
+                    <p>التقييمات الصفية والأسبوعية والمنزلية</p>
                     <a href="التقيمات.html" class="btn">اعرف أكثر</a>
                 </div>
             </div>
@@ -91,16 +111,17 @@
 
     <section id="about">
         <div class="container">
-            <h2>من نحن؟</h2>
+            <h2 class="section-title">من نحن؟</h2>
             <div class="about-content">
-                <p>أنا <strong>محمد مصطفى</strong>، طالب بالصف الأول الثانوي، وعملت هذا الموقع علشان أساعد زملائي الطلاب نوفر وقتنا  في البحث عن الكتب والتقييمات.</p>
+                <p>أنا <strong>محمد مصطفى</strong>، طالب بالصف الأول الثانوي، وقمت بتأسيس هذه المنصة بهدف مساعدة زملائي الطلاب في توفير الوقت والجهد في البحث عن الكتب والتقييمات الدراسية.</p>
+                <p>المنصة توفر جميع المواد الدراسية للصف الأول الثانوي بطريقة منظمة وسهلة الوصول، مع تحديثات مستمرة لتوفير أحدث التقييمات والمواد التعليمية.</p>
             </div>
         </div>
     </section>
 
     <section id="contact">
         <div class="container">
-            <h2>اتصل بنا</h2>
+            <h2 class="section-title">اتصل بنا</h2>
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
@@ -119,7 +140,7 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <h3>من نحن</h3>
-                    <p>أنا محمد مصطفى، طالب بالصف الأول الثانوي، وعملت هذا الموقع علشان أساعد زملائي الطلاب نوفر وقتنا في البحث عن الكتب والتقييمات.</p>
+                    <p>منصة تعليمية تهدف إلى مساعدة طلاب الصف الأول الثانوي في الحصول على جميع المواد الدراسية والتقييمات في مكان واحد.</p>
                 </div>
                 
                 <div class="social-section">
@@ -138,7 +159,7 @@
                 </div>
                 
                 <div class="copyright">
-                    <p>جميع الحقوق محفوظة &copy; محمد مصطفى عباس 2025</p>
+                    <p>جميع الحقوق محفوظة &copy; منصة الشناوي التعليمية 2025</p>
                 </div>
             </div>
         </div>
