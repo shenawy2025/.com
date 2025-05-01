@@ -93,13 +93,11 @@ header {
     transition: var(--transition);
     padding: 0.5rem;
     border-radius: 50%;
-    background-color: rgba(79, 195, 247, 0.1);
 }
 
 .theme-toggle:hover {
     transform: rotate(15deg);
     color: var(--accent-color);
-    background-color: rgba(79, 195, 247, 0.2);
 }
 
 .hero {
@@ -475,80 +473,6 @@ footer {
     height: 25px;
 }
 
-.install-prompt {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 999;
-    transform: translateX(-150%);
-    transition: transform 0.3s ease;
-    max-width: 300px;
-}
-
-.install-prompt.show {
-    transform: translateX(0);
-}
-
-.install-prompt img {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-}
-
-.install-prompt-content {
-    flex: 1;
-}
-
-.install-prompt h4 {
-    margin: 0 0 5px 0;
-    font-size: 16px;
-}
-
-.install-prompt p {
-    margin: 0;
-    font-size: 14px;
-    color: var(--text-color);
-    opacity: 0.8;
-}
-
-.install-prompt-buttons {
-    display: flex;
-    gap: 5px;
-    margin-top: 10px;
-}
-
-.install-btn {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    flex: 1;
-}
-
-.install-btn:hover {
-    background-color: var(--primary-color);
-}
-
-.cancel-btn {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    font-size: 20px;
-    padding: 0 5px;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -601,13 +525,6 @@ footer {
     
     .features, .categories {
         grid-template-columns: 1fr;
-    }
-
-    .install-prompt {
-        left: 10px;
-        right: 10px;
-        max-width: none;
-        bottom: 70px;
     }
 }
 
