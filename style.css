@@ -261,6 +261,7 @@ header {
     text-align: center;
     box-shadow: var(--shadow);
     transition: var(--transition);
+    position: relative;
 }
 
 .category-card:hover {
@@ -287,6 +288,26 @@ header {
 
 .category-card p {
     margin-bottom: 1.5rem;
+}
+
+.new-badge {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background-color: #ff4757;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 #about {

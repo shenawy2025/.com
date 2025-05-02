@@ -38,4 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    
+    setTimeout(function() {
+        const newBadges = document.querySelectorAll('.new-badge');
+        newBadges.forEach(badge => {
+            badge.remove();
+        });
+    }, 24 * 60 * 60 * 1000); 
 });
