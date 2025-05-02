@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تنزيل -  الشناوي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #166088;
+    --accent-color: #4fc3f7;
+    --text-color: #333;
+    --light-text: #f8f9fa;
+    --bg-color: #f5f7fa;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --warning-color: #ff4444;
+}
+
+[data-theme="dark"] {
+    --primary-color: #5e81ac;
+    --secondary-color: #81a1c1;
+    --accent-color: #88c0d0;
+    --text-color: #eceff4;
+    --light-text: #e5e9f0;
+    --bg-color: #2e3440;
+    --card-bg: #3b4252;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --warning-color: #ff6b6b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    direction: rtl;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.logo i {
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+    color: var(--accent-color);
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: var(--secondary-color);
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: var(--transition);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg);
+    color: var(--accent-color);
+}
+
+.download-section {
+    padding: 10rem 0 5rem;
+    text-align: center;
+}
+
+.download-card {
+    background-color: var(--card-bg);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.download-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+}
+
+.download-icon {
+    font-size: 4rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+}
+
+.download-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.download-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.download-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    flex: 1;
+    min-width: 150px;
+    margin: 0.5rem;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+}
+
+.info-item i {
+    color: var(--accent-color);
+    margin-left: 0.5rem;
+}
+
+.download-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--light-text);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(79, 195, 247, 0.4);
+    border: none;
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(79, 195, 247, 0.6);
+    background-color: var(--primary-color);
+}
+
+.download-btn i {
+    margin-left: 0.5rem;
+}
+
+.warning-message {
+    background-color: var(--warning-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+.warning-message i {
+    margin-left: 0.5rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 3rem 0;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer-about {
+    margin-bottom: 0.5rem;
+}
+
+.footer-about h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    color: var(--accent-color);
+}
+
+.footer-about p {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.social-section {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.social-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    color: var(--light-text);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--light-text);
+    transition: var(--transition);
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    background-color: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
+}
+
+.copyright {
+    margin-top: 1rem;
+    font-size: 1rem;
+    width: 100%;
+    padding-top: 1rem;
+}
+.telegram-float {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #4d4d4d;
+    box-shadow: 3px 2px 45px 0px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.telegram-float:hover {
+    transform: scale(1.1) rotate(15deg);
+    color: white;
+}
+
+.telegram-float .filled {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #0088cc;
+    transition: all 0.3s ease-in-out;
+}
+
+.telegram-float:hover .filled {
+    height: 100%;
+}
+
+.telegram-float svg {
+    position: relative;
+    z-index: 1;
+    width: 25px;
+    height: 25px;
+}
+
+
+@media (max-width: 768px) {
+    .download-section {
+        padding: 8rem 0 3rem;
+    }
+    
+    .download-card {
+        padding: 2rem;
+    }
+    
+    .download-title {
+        font-size: 1.8rem;
+    }
+    
+    .download-info {
+        flex-direction: column;
+    }
+    
+    .info-item {
+        margin: 0.5rem 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <a href="https://t.me/mohamedshen12" class="telegram-float" target="_blank" aria-label="Telegram">
+        <div class="filled"></div>
+        <svg version="1.1" viewBox="0 0 100 100">
+            <path d="M95,9.9c-1.3-1.1-3.4-1.2-7-0.1c0,0,0,0,0,0c-2.5,0.8-24.7,9.2-44.3,17.3c-17.6,7.3-31.9,13.7-33.6,14.5c-1.9,0.6-6,2.4-6.2,5.2c-0.1,1.8,1.4,3.4,4.3,4.7c3.1,1.6,16.8,6.2,19.7,7.1c1,3.4,6.9,23.3,7.2,24.5c0.4,1.8,1.6,2.8,2.2,3.2c0.1,0.1,0.3,0.3,0.5,0.4c0.3,0.2,0.7,0.3,1.2,0.3c0.7,0,1.5-0.3,2.2-0.8c3.7-3,10.1-9.7,11.9-11.6c7.9,6.2,16.5,13.1,17.3,13.9c0,0,0.1,0.1,0.1,0.1c1.9,1.6,3.9,2.5,5.7,2.5c0.6,0,1.2-0.1,1.8-0.3c2.1-0.7,3.6-2.7,4.1-5.4c0-0.1,0.1-0.5,0.3-1.2c3.4-14.8,6.1-27.8,8.3-38.7c2.1-10.7,3.8-21.2,4.8-26.8c0.2-1.4,0.4-2.5,0.5-3.2C96.3,13.5,96.5,11.2,95,9.9z M30,58.3l47.7-31.6c0.1-0.1,0.3-0.2,0.4-0.3c0,0,0,0,0,0c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.2-0.1c-0.1,0.1-0.2,0.4-0.4,0.6L66,38.1c-8.4,7.7-19.4,17.8-26.7,24.4c0,0,0,0,0,0.1c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1-0.1,0.1c0,0.1,0,0.1-0.1,0.2c0,0,0,0.1,0,0.1c0,0,0,0,0,0.1c-0.5,5.6-1.4,15.2-1.8,19.5c0,0,0,0,0-0.1C36.8,81.4,31.2,62.3,30,58.3z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <header>
+        <div class="container header-container">
+            <a href="#home" class="logo">
+                <span> الشناوي</span>
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="download-section">
+        <div class="container">
+            <div class="download-card">
+                <div class="download-icon">
+                    <i class="fas fa-file-download"></i>
+                </div>
+                <h1 class="download-title">تنزيل مذكرة تاريخ </h1>
+                <p class="download-description">اضغط على زر التنزيل عشان يتحمل مباشر من هنا ميحولكش لصفحة تانية </p>
+                
+               
+                <div class="warning-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>إذا تأخر التنزيل لا تقلق، سوف يبدأ تلقائيًا خلال ثوانٍ</span>
+                </div>
+                
+                <div class="download-info">
+                    <div class="info-item">
+                        <span>حجم الملف: 8.5MB</span>
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <div class="info-item">
+                        <span>الصيغة: PDF</span>
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="info-item">
+                        <span>آخر تحديث: 2025</span>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div>
+                
+                
+                <a href="https://drive.google.com/uc?export=download&id=19k6jQpDKgVPhROnLB0nCjXclDvUlW1qP" class="download-btn" download>
+                    تنزيل الملف
+                    <i class="fas fa-download"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>من نحن</h3>
+                    <p>منصة تعليمية تهدف إلى مساعدة طلاب الصف الأول الثانوي في الحصول على جميع المواد الدراسية والتقييمات في مكان واحد.</p>
+                </div>
+                <div class="social-section">
+                    <h4>وسائل التواصل</h4>
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/profile.php?id=100090831465254" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mohamedmostafashen/" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/mohamedshen12" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>جميع الحقوق محفوظة &copy; منصة الشناوي التعليمية 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // تبديل الوضع الليلي
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.setAttribute('data-theme', 
+                body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            
+            themeToggle.innerHTML = body.getAttribute('data-theme') === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        });
+    </script>
+</body>
+</html>
