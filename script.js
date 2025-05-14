@@ -1,4 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
+         window.addEventListener('load', function() {
+        setTimeout(function() {
+            const notification = document.getElementById('whatsappNotification');
+            const sound = document.getElementById('notificationSound');
+            
+            notification.classList.add('show');
+            sound.play().catch(e => console.log('تعذر تشغيل الصوت:', e));
+        }, 2000); 
+    });
+    
+    document.getElementById('closeNotification').addEventListener('click', function() {
+        document.getElementById('whatsappNotification').classList.remove('show');
+    });
+        document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const body = document.body;
@@ -38,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
     
     setTimeout(function() {
         const newBadges = document.querySelectorAll('.new-badge');

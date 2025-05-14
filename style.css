@@ -1,4 +1,4 @@
-:root {
+       :root {
     --primary-color: #4a6fa5;
     --secondary-color: #166088;
     --accent-color: #4fc3f7;
@@ -493,7 +493,75 @@ footer {
     width: 25px;
     height: 25px;
 }
-
+   .whatsapp-notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 9999;
+        transform: translateX(150%);
+        transition: transform 0.5s ease;
+        font-family: 'Tajawal', sans-serif;
+        overflow: hidden;
+    }
+    
+    .whatsapp-notification.show {
+        transform: translateX(0);
+    }
+    
+    .notification-content {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .notification-header {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: #25D366;
+        color: white;
+        font-weight: bold;
+    }
+    
+    .notification-header i {
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    
+    .notification-header span {
+        flex-grow: 1;
+    }
+    
+    .close-notification {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0 5px;
+    }
+    
+    .notification-body {
+        padding: 15px;
+        color: #333;
+        line-height: 1.5;
+    }
+    
+    .notification-body p {
+        margin: 0;
+        text-align: right;
+    }
+    
+    @media (max-width: 480px) {
+        .whatsapp-notification {
+            width: 90%;
+            right: 5%;
+            bottom: 10px;
+        }
+    }
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
