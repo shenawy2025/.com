@@ -3,616 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الكتب الخارجية -   الشناوي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>الموقع تحت الصيانة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
-            --accent-color: #4fc3f7;
-            --text-color: #333;
-            --light-text: #f8f9fa;
-            --bg-color: #f5f7fa;
-            --card-bg: #ffffff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        [data-theme="dark"] {
-            --primary-color: #5e81ac;
-            --secondary-color: #81a1c1;
-            --accent-color: #88c0d0;
-            --text-color: #eceff4;
-            --light-text: #e5e9f0;
-            --bg-color: #2e3440;
-            --card-bg: #3b4252;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
+        
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            direction: rtl;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        header {
-            background-color: var(--card-bg);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .header-container {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .logo i {
-            margin-left: 0.5rem;
-            font-size: 1.8rem;
-            color: var(--accent-color);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            color: var(--text-color);
-            transition: var(--transition);
+            align-items: center;
+            overflow: hidden;
             position: relative;
+        }
+        
+        .maintenance-container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #f8bbd0;
+            text-shadow: 0 0 10px rgba(248, 187, 208, 0.5);
+            font-weight: 900;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            color: #4fc3f7;
+            animation: bounce 2s infinite;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 2rem 0;
             overflow: hidden;
         }
-
-        .theme-toggle::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+        
+        .progress-bar {
             height: 100%;
-            background-color: var(--accent-color);
-            opacity: 0;
-            border-radius: 50%;
-            transition: var(--transition);
-            z-index: 0;
+            width: 65%;
+            background: linear-gradient(90deg, #4fc3f7, #7b1fa2);
+            border-radius: 10px;
+            animation: progress 3s ease-in-out infinite;
+            position: relative;
         }
-
-        .theme-toggle:hover::before {
-            opacity: 0.1;
-        }
-
-        .theme-toggle i {
-            font-size: 1.2rem;
-            z-index: 1;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover i {
-            transform: rotate(20deg) scale(1.1);
-            color: var(--accent-color);
-        }
-
-        main {
-            margin-top: 80px;
-            padding: 2rem 0;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-        }
-
-        .subject-section {
-            margin-bottom: 3rem;
-            background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        .subject-section h2 {
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        .book-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .book-category {
-            background-color: var(--bg-color);
-            padding: 1rem;
-            border-radius: 6px;
-        }
-
-        .book-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .book-item {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: rgba(79, 195, 247, 0.1);
-            border-radius: 6px;
-        }
-
-        .book-item h4 {
-            margin-bottom: 0.5rem;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--light-text);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .download-btn:hover {
-            background-color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        footer {
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .footer-about h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .footer-about p {
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .social-section h4 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
+        
         .social-links {
             display: flex;
+            justify-content: center;
             gap: 1.5rem;
-            justify-content: center;
+            margin-top: 2rem;
         }
-
+        
         .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--light-text);
-            font-size: 1.2rem;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        .telegram-float {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fff;
-            color: #4d4d4d;
-            box-shadow: 3px 2px 45px 0px rgba(0, 0, 0, 0.12);
-            z-index: 1000;
-            transition: var(--transition);
-            overflow: hidden;
-        }
-
-        .telegram-float:hover {
-            transform: scale(1.1) rotate(15deg);
-            color: white;
-        }
-
-        .telegram-float .filled {
-            position: absolute;
-            top: auto;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            background-color: #0088cc;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .telegram-float:hover .filled {
-            height: 100%;
-        }
-
-        .telegram-float svg {
-            position: relative;
-            z-index: 1;
-            width: 25px;
-            height: 25px;
-        }
-        .protection-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 99999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            font-family: 'Tajawal', sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .protection-content {
-            background-color: #d9534f;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 90%;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            animation: shake 0.5s;
-        }
-        
-        .protection-content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .protection-content p {
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-        }
-        
-        .protection-btn {
-            background-color: white;
-            color: #d9534f;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
+            color: #fff;
+            font-size: 1.5rem;
             transition: all 0.3s ease;
         }
         
-        .protection-btn:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-2px);
-        }
-        
-        .countdown-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 99999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            font-family: 'Tajawal', sans-serif;
-            text-align: center;
-        }
-        
-        .countdown-content {
-            background-color: #333;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 90%;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        
-        .countdown-content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        .social-links a:hover {
+            transform: translateY(-5px);
             color: #4fc3f7;
         }
         
-        .countdown-timer {
-            font-size: 2rem;
-            font-weight: bold;
-            margin: 20px 0;
-            color: #d9534f;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-            20%, 40%, 60%, 80% { transform: translateX(10px); }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes progress {
+            0% { width: 65%; }
+            50% { width: 75%; }
+            100% { width: 65%; }
+        }
+        
+        /* Floating Tools */
+        .tool {
+            position: absolute;
+            opacity: 0.7;
+            z-index: 1;
+            animation: float 10s infinite linear;
+        }
+        
+        .tool:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            font-size: 2rem;
+            animation-delay: 0s;
+            color: #4fc3f7;
+        }
+        
+        .tool:nth-child(2) {
+            top: 70%;
+            left: 15%;
+            font-size: 3rem;
+            animation-delay: 2s;
+            color: #f8bbd0;
+            animation-duration: 12s;
+        }
+        
+        .tool:nth-child(3) {
+            top: 20%;
+            right: 10%;
+            font-size: 2.5rem;
+            animation-delay: 4s;
+            color: #a5d6a7;
+            animation-duration: 15s;
+        }
+        
+        .tool:nth-child(4) {
+            top: 80%;
+            right: 5%;
+            font-size: 2rem;
+            animation-delay: 1s;
+            color: #ffcc80;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-50px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            p { font-size: 1rem; }
+            .icon { font-size: 3rem; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <span>الشناوي</span>
-                <i class="fas fa-graduation-cap"></i>
-            </a>
-            <div class="header-actions">
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <main class="container">
-        <h1>تحميل الكتب الخارجية للصف الأول الثانوي</h1>
+    <i class="fas fa-tools tool"></i>
+    <i class="fas fa-hammer tool"></i>
+    <i class="fas fa-cog tool"></i>
+    <i class="fas fa-screwdriver tool"></i>
+    
+    <div class="maintenance-container">
+        <i class="fas fa-tools icon"></i>
+        <h1>جاري الصيانة</h1>
+        <p>نقوم حاليًا بإجراء بعض التحديثات والتطويرات على الموقع لتحسين تجربتكم.<br>
+        سنعود قريبًا بإذن الله بنسخة أفضل وأكثر تطورًا.</p>
         
-        <div class="subject-section">
-            <h2>اللغة العربية</h2>
-            <div class="book-types">
-                <div class="book-category">
-                    <h3>كتاب الامتحان</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>اللغة العربية - الامتحان</h4>
-                            <a href="https://www.mediafire.com/file/4w9kqnol8v7oh17/كتاب_الامتحان_عربى_اولى_ثانوى_ترم_ثانى_2025_الجزء_الاول_كتاب_الشرح.pdf/file" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-category">
-                    <h3>كتاب الأضواء</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>اللغة العربية - الأضواء</h4>
-                            <a href="https://drive.google.com/file/d/1oCZyUK9oQc0lV3SK54tVIxa7w2KE25fW/view?usp=sharing" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="progress-container">
+            <div class="progress-bar"></div>
         </div>
         
-        <div class="subject-section">
-            <h2>اللغة الإنجليزية</h2>
-            <div class="book-types">
-                <div class="book-category">
-                    <h3>كتاب المعاصر</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>English - المعاصر</h4>
-                            <a href="https://www.mediafire.com/file/cctfwcm9yii6tux/معاصر+إنجليزي+1ث+-+ترم+تاني+2025+(1).pdf/file" class="download-btn">Download Book</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-category">
-                    <h3>كتاب جيم</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>English - جيم</h4>
-                            <a href="https://www.mediafire.com/file/89ywgmiiczpr9kz/جيم+1ث+ترم+ثاني+2025+.pdf/file" class="download-btn">Download Book</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <p>نعتذر للإزعاج ونشكركم على صبركم.<br>
+        للتواصل في الحالات الطارئة، يمكنكم مراسلتنا عبر:</p>
         
-        <div class="subject-section">
-            <h2>الرياضيات</h2>
-            <div class="book-types">
-                <div class="book-category">
-                    <h3>كتاب المعاصر</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>الرياضيات - المعاصر</h4>
-                            <a href="https://www.mediafire.com/file/91kgwpnxpvch60w/كتاب_المعاصر_رياضيات_اولى_اولى_ثانوى_ترم_ثانى_2025.pdf/file" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="social-links">
+            <a href="https://web.facebook.com/profile.php?id=100090831465254"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/mohamedmostafashen/"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/mohamedshen12"><i class="fab fa-telegram"></i></a>
         </div>
-        
-        <div class="subject-section">
-            <h2>التاريخ</h2>
-            <div class="book-types">
-                <div class="book-category">
-                    <h3>كتاب الامتحان</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>التاريخ - الامتحان</h4>
-                            <a href="https://www.mediafire.com/file/ixnbmar32ms4noy/كتاب_الامتحان_تاريخ_اولى_اولى_ثانوى_ترم_ثانى_2025.pdf/file" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-category">
-                    <h3>كتاب الأضواء</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>التاريخ - الأضواء</h4>
-                            <a href="https://drive.google.com/file/d/15NPeL8tJO8uWf6Mnc0CF3sHPTVYFQizF/view?usp=sharing" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="subject-section">
-            <h2>الفلسفة</h2>
-            <div class="book-types">
-                <div class="book-category">
-                    <h3>كتاب الامتحان</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>الفلسفة - الامتحان</h4>
-                            <a href="https://www.mediafire.com/file/3wfyp1vawi357vz/كتاب_الامتحان_فلسفة_والمنطق_الصف_الاول_الثانوي_الترم_الثاني.pdf/file" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="subject-section">
-            <h2>العلوم المتكاملة</h2>
-            <div class="book-types">
-                <div class="book-category">
-                    <h3>كتاب الامتحان</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>العلوم - الامتحان</h4>
-                            <a href="https://www.mediafire.com/file/7dt94n5fmoht1xk/موقع_التفوق_الامتحان_علوم_متكاملة_1_ث_ترم_2.pdf/file" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="book-category">
-                    <h3>كتاب التفوق</h3>
-                    <div class="book-list">
-                        <div class="book-item">
-                            <h4>العلوم - التفوق</h4>
-                            <a href="https://drive.google.com/file/d/1vm4BTOihm9ITNRnXRoP0YbjNA6_rZVkM/view?usp=sharing" class="download-btn">تحميل الكتاب</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
-                    <h3>من نحن</h3>
-                    <p>أنا محمد مصطفى، طالب بالصف الأول الثانوي، وعملت هذا الموقع علشان أساعد زملائي الطلاب نوفر وقتنا في البحث عن الكتب والتقييمات.</p>
-                </div>
-                
-                <div class="social-section">
-                    <h4>وسائل التواصل</h4>
-                    <div class="social-links">
-                        <a href="https://web.facebook.com/profile.php?id=100090831465254" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/mohamedmostafashen/" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://t.me/mohamedshen12" aria-label="Telegram">
-                            <i class="fab fa-telegram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="copyright">
-                    <p>جميع الحقوق محفوظة &copy; محمد مصطفى عباس 2025</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <a href="https://t.me/mohamedshen12" class="telegram-float" target="_blank" aria-label="Telegram">
-        <div class="filled"></div>
-        <svg version="1.1" viewBox="0 0 100 100">
-            <path d="M95,9.9c-1.3-1.1-3.4-1.2-7-0.1c0,0,0,0,0,0c-2.5,0.8-24.7,9.2-44.3,17.3c-17.6,7.3-31.9,13.7-33.6,14.5c-1.9,0.6-6,2.4-6.2,5.2c-0.1,1.8,1.4,3.4,4.3,4.7c3.1,1.6,16.8,6.2,19.7,7.1c1,3.4,6.9,23.3,7.2,24.5c0.4,1.8,1.6,2.8,2.2,3.2c0.1,0.1,0.3,0.3,0.5,0.4c0.3,0.2,0.7,0.3,1.2,0.3c0.7,0,1.5-0.3,2.2-0.8c3.7-3,10.1-9.7,11.9-11.6c7.9,6.2,16.5,13.1,17.3,13.9c0,0,0.1,0.1,0.1,0.1c1.9,1.6,3.9,2.5,5.7,2.5c0.6,0,1.2-0.1,1.8-0.3c2.1-0.7,3.6-2.7,4.1-5.4c0-0.1,0.1-0.5,0.3-1.2c3.4-14.8,6.1-27.8,8.3-38.7c2.1-10.7,3.8-21.2,4.8-26.8c0.2-1.4,0.4-2.5,0.5-3.2C96.3,13.5,96.5,11.2,95,9.9z M30,58.3l47.7-31.6c0.1-0.1,0.3-0.2,0.4-0.3c0,0,0,0,0,0c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.2-0.1c-0.1,0.1-0.2,0.4-0.4,0.6L66,38.1c-8.4,7.7-19.4,17.8-26.7,24.4c0,0,0,0,0,0.1c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1-0.1,0.1c0,0.1,0,0.1-0.1,0.2c0,0,0,0.1,0,0.1c0,0,0,0,0,0.1c-0.5,5.6-1.4,15.2-1.8,19.5c0,0,0,0,0-0.1C36.8,81.4,31.2,62.3,30,58.3z" fill="currentColor"></path>
-        </svg>
-    </a>
-
-    <script>
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const icon = themeToggle.querySelector('i');
-
-        const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'dark') {
-            body.setAttribute('data-theme', 'dark');
-            icon.classList.replace('fa-moon', 'fa-sun');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                icon.classList.replace('fa-sun', 'fa-moon');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                icon.classList.replace('fa-moon', 'fa-sun');
-            }
-        });
-    </script>
+    </div>
 </body>
 </html>
