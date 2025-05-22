@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الكورس - الشناوي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #5e81ac;
+            --secondary-color: #81a1c1;
+            --accent-color: #88c0d0;
+            --text-color: #eceff4;
+            --light-text: #e5e9f0;
+            --bg-color: #2e3440;
+            --card-bg: #3b4252;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            margin-left: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        /* قسم تفاصيل الكورس */
+        .course-details {
+            padding-top: 6rem;
+        }
+
+        .course-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .course-image-large {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            max-height: 400px;
+        }
+
+        .course-image-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-info {
+            flex: 1;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .course-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .course-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .meta-item i {
+            margin-left: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .section-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
+        }
+
+        .section-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .section-tab.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* قسم المحاضرات */
+        .lectures-container {
+            margin-top: 2rem;
+        }
+
+        .lecture {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .lecture-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lecture-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .lecture-toggle {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(79, 195, 247, 0.1);
+            transition: var(--transition);
+        }
+
+        .lecture-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .lecture.active .lecture-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .lecture-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+
+        .lecture.active .lecture-content {
+            max-height: 1000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .video-title {
+            flex: 1;
+        }
+
+        .watch-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .watch-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* قسم الفيديو عند المشاهدة */
+        .video-player-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .video-player-container.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-player {
+            width: 80%;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .video-player video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .close-video {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .course-header {
+                flex-direction: column;
+            }
+            
+            .course-image-large {
+                max-height: 300px;
+            }
+            
+            .video-player {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span> الشناوي</span>
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="course-details">
+            <!-- رأس الكورس -->
+            <div class="course-header">
+                <div class="course-image-large">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="رياضيات">
+                </div>
+                
+                <div class="course-info">
+                    <h1 class="course-title">رياضيات - الجبر والهندسة</h1>
+                    <p class="course-description">
+                        هذا الكورس الشامل يغطي جميع مفاهيم الجبر والهندسة للصف الأول الثانوي، مع شرح مفصل لكل درس وحلول للتمارين المدرسية والتدريبات الإضافية. الكورس مناسب لجميع المستويات ويقدم بأسلوب سهل ومبسط.
+                    </p>
+                    
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>تاريخ الإضافة: 15 مايو 2025</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-book"></i>
+                            <span>المادة: الرياضيات</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>المدرس: أ. أحمد محمد</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>المدة: 12 ساعة</span>
+                        </div>
+                    </div>
+                    
+                    <div class="section-tabs">
+                        <div class="section-tab active">المحاضرات</div>
+                        <div class="section-tab">الملفات المرفقة</div>
+                        <div class="section-tab">التقييمات</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- قسم المحاضرات -->
+            <div class="lectures-container">
+                <!-- محاضرة 1 -->
+                <div class="lecture">
+                    <div class="lecture-header">
+                        <h3 class="lecture-title">المحاضرة الأولى: أساسيات الجبر</h3>
+                        <div class="lecture-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="video-item">
+                            <div class="video-title">الجزء الأول: مقدمة في الجبر والمجموعات</div>
+                            <a href="#video1" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثاني: العمليات على المجموعات</div>
+                            <a href="#video2" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثالث: حل تمارين الكتاب المدرسي</div>
+                            <a href="#video3" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- محاضرة 2 -->
+                <div class="lecture">
+                    <div class="lecture-header">
+                        <h3 class="lecture-title">المحاضرة الثانية: المعادلات الخطية</h3>
+                        <div class="lecture-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="video-item">
+                            <div class="video-title">الجزء الأول: حل المعادلات من الدرجة الأولى</div>
+                            <a href="#video4" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثاني: تطبيقات على المعادلات الخطية</div>
+                            <a href="#video5" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- محاضرة 3 -->
+                <div class="lecture">
+                    <div class="lecture-header">
+                        <h3 class="lecture-title">المحاضرة الثالثة: المتباينات</h3>
+                        <div class="lecture-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="video-item">
+                            <div class="video-title">الجزء الأول: حل المتباينات الخطية</div>
+                            <a href="#video6" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثاني: تمارين وتطبيقات</div>
+                            <a href="#video7" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- محاضرة 4 -->
+                <div class="lecture">
+                    <div class="lecture-header">
+                        <h3 class="lecture-title">المحاضرة الرابعة: الهندسة التحليلية</h3>
+                        <div class="lecture-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="video-item">
+                            <div class="video-title">الجزء الأول: الإحداثيات والمستوى الديكارتي</div>
+                            <a href="#video8" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثاني: معادلة الخط المستقيم</div>
+                            <a href="#video9" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- محاضرة 5 -->
+                <div class="lecture">
+                    <div class="lecture-header">
+                        <h3 class="lecture-title">المحاضرة الخامسة: الدوال</h3>
+                        <div class="lecture-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="video-item">
+                            <div class="video-title">الجزء الأول: مفهوم الدالة وأنواعها</div>
+                            <a href="#video10" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثاني: تمثيل الدوال بيانياً</div>
+                            <a href="#video11" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- محاضرة 6 -->
+                <div class="lecture">
+                    <div class="lecture-header">
+                        <h3 class="lecture-title">المحاضرة السادسة: مراجعة نهائية</h3>
+                        <div class="lecture-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="lecture-content">
+                        <div class="video-item">
+                            <div class="video-title">الجزء الأول: مراجعة الجبر</div>
+                            <a href="#video12" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثاني: مراجعة الهندسة</div>
+                            <a href="#video13" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-title">الجزء الثالث: حل نماذج امتحانات</div>
+                            <a href="#video14" class="watch-btn watch-video-btn">شاهد الآن</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- مشغل الفيديو -->
+    <div class="video-player-container" id="videoPlayer">
+        <div class="video-player">
+            <button class="close-video" id="closeVideo">
+                <i class="fas fa-times"></i>
+            </button>
+            <video controls id="mainVideoPlayer">
+                <source src="" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; منصة الشناوي التعليمية 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تغيير الثيم
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const body = document.body;
+
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            body.setAttribute('data-theme', currentTheme);
+            
+            if (currentTheme === 'dark') {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                if (newTheme === 'dark') {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+
+            // فتح وإغلاق المحاضرات
+            const lectureHeaders = document.querySelectorAll('.lecture-header');
+            lectureHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const lecture = header.parentElement;
+                    lecture.classList.toggle('active');
+                });
+            });
+
+            // تشغيل الفيديو
+            const watchBtns = document.querySelectorAll('.watch-video-btn');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const mainVideoPlayer = document.getElementById('mainVideoPlayer');
+            const closeVideoBtn = document.getElementById('closeVideo');
+
+            watchBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const videoId = this.getAttribute('href').substring(1);
+                    
+                    // هنا يمكنك تحديد مصدر الفيديو بناءً على videoId
+                    // في هذا المثال سنستخدم فيديو تجريبي
+                    mainVideoPlayer.src = 'https://samplelib.com/lib/preview/mp4/sample-5s.mp4';
+                    
+                    videoPlayer.classList.add('show');
+                    mainVideoPlayer.play();
+                    
+                    // التمرير إلى الأعلى بسلاسة
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // إغلاق الفيديو
+            closeVideoBtn.addEventListener('click', () => {
+                videoPlayer.classList.remove('show');
+                mainVideoPlayer.pause();
+            });
+        });
+    </script>
+</body>
+</html>

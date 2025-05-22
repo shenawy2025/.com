@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكورسات التعليمية - الشناوي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #5e81ac;
+            --secondary-color: #81a1c1;
+            --accent-color: #88c0d0;
+            --text-color: #eceff4;
+            --light-text: #e5e9f0;
+            --bg-color: #2e3440;
+            --card-bg: #3b4252;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            margin-left: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--secondary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color);
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(15deg);
+            color: var(--accent-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-top: 6rem;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        /* قسم الكورسات */
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .course-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .course-content {
+            padding: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .course-description {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .course-meta i {
+            margin-left: 5px;
+            color: var(--accent-color);
+        }
+
+        .course-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .course-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-about {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .social-section {
+            margin: 1rem 0;
+            width: 100%;
+        }
+
+        .social-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--light-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: var(--transition);
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
+        }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 1rem;
+            width: 100%;
+            padding-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .courses {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span> الشناوي</span>
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2 class="section-title">الكورسات التعليمية</h2>
+            <div class="courses">
+                <!-- كورس 1 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="رياضيات" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">رياضيات - الجبر والهندسة</h3>
+                        <p class="course-description">كورس شامل لشرح منهج الرياضيات للصف الأول الثانوي مع حلول تمارين الكتاب المدرسي والتدريبات الإضافية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 مايو 2025</span>
+                            <span><i class="fas fa-book"></i> الرياضيات</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 2 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="فيزياء" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">فيزياء - الميكانيكا</h3>
+                        <p class="course-description">شرح مفصل لوحدة الميكانيكا مع تجارب عملية وتطبيقات حياتية وتدريبات متنوعة</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 10 مايو 2025</span>
+                            <span><i class="fas fa-book"></i> الفيزياء</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 3 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1518544866330-95a2bfb1ee08?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="كيمياء" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">كيمياء - التفاعلات الكيميائية</h3>
+                        <p class="course-description">شرح مبسط للتفاعلات الكيميائية مع أمثلة عملية وتجارب تفاعلية لتعزيز الفهم</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 8 مايو 2025</span>
+                            <span><i class="fas fa-book"></i> الكيمياء</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 4 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="أحياء" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">أحياء - الخلية والوراثة</h3>
+                        <p class="course-description">دراسة متعمقة لتركيب الخلية وأساسيات الوراثة مع رسومات توضيحية وخرائط ذهنية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 5 مايو 2025</span>
+                            <span><i class="fas fa-book"></i> الأحياء</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 5 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="لغة عربية" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">لغة عربية - النحو والصرف</h3>
+                        <p class="course-description">شرح قواعد النحو والصرف مع تطبيقات على النصوص الأدبية وتحليل البلاغة</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 3 مايو 2025</span>
+                            <span><i class="fas fa-book"></i> اللغة العربية</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 6 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="لغة إنجليزية" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">لغة إنجليزية - القواعد والمحادثة</h3>
+                        <p class="course-description">تحسين مهارات المحادثة والقواعد الإنجليزية مع تمارين تفاعلية ونطق صحيح</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 1 مايو 2025</span>
+                            <span><i class="fas fa-book"></i> اللغة الإنجليزية</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 7 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="تاريخ" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">تاريخ - الحضارات القديمة</h3>
+                        <p class="course-description">رحلة عبر الحضارات القديمة مع تحليل للأحداث التاريخية وأسباب سقوط الحضارات</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 28 أبريل 2025</span>
+                            <span><i class="fas fa-book"></i> التاريخ</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 8 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="جغرافيا" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">جغرافيا - الخرائط والمناخ</h3>
+                        <p class="course-description">فهم أساسيات قراءة الخرائط وأنواع المناخات حول العالم مع تحليل الظواهر الجغرافية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 25 أبريل 2025</span>
+                            <span><i class="fas fa-book"></i> الجغرافيا</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 9 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="فلسفة" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">فلسفة - المنطق والفلسفة</h3>
+                        <p class="course-description">مدخل إلى علم المنطق والمدارس الفلسفية مع تحليل لأفكار الفلاسفة الكبار</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 22 أبريل 2025</span>
+                            <span><i class="fas fa-book"></i> الفلسفة</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 10 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="علم نفس" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">علم نفس - السلوك الإنساني</h3>
+                        <p class="course-description">دراسة السلوك الإنساني ونظريات التعلم مع تطبيقات عملية في الحياة اليومية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 20 أبريل 2025</span>
+                            <span><i class="fas fa-book"></i> علم النفس</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 11 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="حاسب آلي" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">حاسب آلي - البرمجة الأساسية</h3>
+                        <p class="course-description">مدخل إلى عالم البرمجة باستخدام لغة Python مع مشاريع عملية وتطبيقات تفاعلية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 18 أبريل 2025</span>
+                            <span><i class="fas fa-book"></i> الحاسب الآلي</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+
+                <!-- كورس 12 -->
+                <div class="course-card">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="تربية دينية" class="course-image">
+                    <div class="course-content">
+                        <h3 class="course-title">تربية دينية - العقيدة والأخلاق</h3>
+                        <p class="course-description">دراسة العقيدة الإسلامية والأخلاق مع تحليل للنصوص الدينية وأحكام الفقه الأساسية</p>
+                        <div class="course-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 أبريل 2025</span>
+                            <span><i class="fas fa-book"></i> التربية الدينية</span>
+                        </div>
+                        <a href="#" class="course-btn">الدخول للكورس</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>منصة الشناوي التعليمية</h3>
+                    <p>نقدم لطلاب الصف الأول الثانوي أفضل الكورسات التعليمية لجميع المواد الدراسية</p>
+                </div>
+                
+                <div class="social-section">
+                    <h4>تابعنا على</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>جميع الحقوق محفوظة &copy; منصة الشناوي التعليمية 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const body = document.body;
+
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            body.setAttribute('data-theme', currentTheme);
+            
+            if (currentTheme === 'dark') {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = body.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                body.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                
+                if (newTheme === 'dark') {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                } else {
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

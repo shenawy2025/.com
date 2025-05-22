@@ -3,196 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الموقع تحت الصيانة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>التقيمات الاسبوعية -  الشناوي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
-        
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --text-color: #333;
+            --light-text: #f8f9fa;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #5e81ac;
+            --secondary-color: #81a1c1;
+            --accent-color: #88c0d0;
+            --text-color: #eceff4;
+            --light-text: #e5e9f0;
+            --bg-color: #2e3440;
+            --card-bg: #3b4252;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        
+
         body {
             font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #fff;
-            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo i {
+            margin-left: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+
+        
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .subject-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .subject-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .subject-card p {
+            color: var(--text-color);
+        }
+
+        /* Modal Styles */
+        .weeks-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-            position: relative;
         }
-        
-        .maintenance-container {
-            text-align: center;
-            padding: 2rem;
+
+        .weeks-container {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            width: 90%;
             max-width: 800px;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeIn 1.5s ease-in-out;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
         }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #f8bbd0;
-            text-shadow: 0 0 10px rgba(248, 187, 208, 0.5);
-            font-weight: 900;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
-        .icon {
-            font-size: 5rem;
+
+        .weeks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
-            color: #4fc3f7;
-            animation: bounce 2s infinite;
         }
-        
-        .progress-container {
+
+        .weeks-header h2 {
+            color: var(--primary-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .weeks-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .week-item {
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .week-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .download-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .download-btn i {
+            margin-left: 0.5rem;
+        }
+
+        .no-link {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-about {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--accent-color);
+        }
+
+        .footer-about p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .social-section {
+            margin: 1rem 0;
             width: 100%;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 2rem 0;
-            overflow: hidden;
         }
-        
-        .progress-bar {
-            height: 100%;
-            width: 65%;
-            background: linear-gradient(90deg, #4fc3f7, #7b1fa2);
-            border-radius: 10px;
-            animation: progress 3s ease-in-out infinite;
-            position: relative;
+
+        .social-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            color: var(--light-text);
         }
-        
+
         .social-links {
             display: flex;
-            justify-content: center;
             gap: 1.5rem;
-            margin-top: 2rem;
+            justify-content: center;
+            margin: 0 auto;
         }
-        
+
         .social-links a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            transition: var(--transition);
+            font-size: 1.2rem;
         }
-        
+
         .social-links a:hover {
             transform: translateY(-5px);
-            color: #4fc3f7;
+            background-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.4);
         }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .copyright {
+            margin-top: 1rem;
+            font-size: 1rem;
+            width: 100%;
+            padding-top: 1rem;
         }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+
+       
+        .telegram-float {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #4d4d4d;
+            box-shadow: 3px 2px 45px 0px rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            transition: var(--transition);
+            overflow: hidden;
         }
-        
-        @keyframes progress {
-            0% { width: 65%; }
-            50% { width: 75%; }
-            100% { width: 65%; }
+
+        .telegram-float:hover {
+            transform: scale(1.1) rotate(15deg);
+            color: white;
         }
-        
-        /* Floating Tools */
-        .tool {
+
+        .telegram-float .filled {
             position: absolute;
-            opacity: 0.7;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: #0088cc;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .telegram-float:hover .filled {
+            height: 100%;
+        }
+
+        .telegram-float svg {
+            position: relative;
             z-index: 1;
-            animation: float 10s infinite linear;
+            width: 25px;
+            height: 25px;
         }
-        
-        .tool:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            font-size: 2rem;
-            animation-delay: 0s;
-            color: #4fc3f7;
+
+        /* Animation */
+        .subject-card {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
         }
-        
-        .tool:nth-child(2) {
-            top: 70%;
-            left: 15%;
-            font-size: 3rem;
-            animation-delay: 2s;
-            color: #f8bbd0;
-            animation-duration: 12s;
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        .tool:nth-child(3) {
-            top: 20%;
-            right: 10%;
-            font-size: 2.5rem;
-            animation-delay: 4s;
-            color: #a5d6a7;
-            animation-duration: 15s;
-        }
-        
-        .tool:nth-child(4) {
-            top: 80%;
-            right: 5%;
-            font-size: 2rem;
-            animation-delay: 1s;
-            color: #ffcc80;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-50px) rotate(180deg); }
-            100% { transform: translateY(0) rotate(360deg); }
-        }
-        
-        /* Responsive */
+
+        .subject-card:nth-child(1) { animation-delay: 0.1s; }
+        .subject-card:nth-child(2) { animation-delay: 0.2s; }
+        .subject-card:nth-child(3) { animation-delay: 0.3s; }
+        .subject-card:nth-child(4) { animation-delay: 0.4s; }
+        .subject-card:nth-child(5) { animation-delay: 0.5s; }
+        .subject-card:nth-child(6) { animation-delay: 0.6s; }
+
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            p { font-size: 1rem; }
-            .icon { font-size: 3rem; }
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .weeks-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .telegram-float {
+                width: 45px;
+                height: 45px;
+                bottom: 1.5rem;
+                left: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <i class="fas fa-tools tool"></i>
-    <i class="fas fa-hammer tool"></i>
-    <i class="fas fa-cog tool"></i>
-    <i class="fas fa-screwdriver tool"></i>
-    
-    <div class="maintenance-container">
-        <i class="fas fa-tools icon"></i>
-        <h1>جاري الصيانة</h1>
-        <p>نقوم حاليًا بإجراء بعض التحديثات والتطويرات على الموقع لتحسين تجربتكم.<br>
-        سنعود قريبًا بإذن الله بنسخة أفضل وأكثر تطورًا.</p>
-        
-        <div class="progress-container">
-            <div class="progress-bar"></div>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span>الشناوي</span>
+                <i class="fas fa-graduation-cap"></i>
+            </a>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
         </div>
-        
-        <p>نعتذر للإزعاج ونشكركم على صبركم.<br>
-        للتواصل في الحالات الطارئة، يمكنكم مراسلتنا عبر:</p>
-        
-        <div class="social-links">
-            <a href="https://web.facebook.com/profile.php?id=100090831465254"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/mohamedmostafashen/"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/mohamedshen12"><i class="fab fa-telegram"></i></a>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>التقييمات الأسبوعية</h1>
+            
+            <div class="subjects-grid">
+                <div class="subject-card" onclick="openWeeksModal('arabic', 'اللغة العربية')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>اللغة العربية</h3>
+                    <p>تقييمات أسبوعية لمادة اللغة العربية</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('english', 'اللغة الإنجليزية')">
+                    <i class="fas fa-language"></i>
+                    <h3>اللغة الإنجليزية</h3>
+                    <p>تقييمات أسبوعية لمادة اللغة الإنجليزية</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('math', 'الرياضيات')">
+                    <i class="fas fa-square-root-alt"></i>
+                    <h3>الرياضيات</h3>
+                    <p>تقييمات أسبوعية لمادة الرياضيات</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('philosophy', 'الفلسفة')">
+                    <i class="fas fa-brain"></i>
+                    <h3>الفلسفة</h3>
+                    <p>تقييمات أسبوعية لمادة الفلسفة</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('history', 'التاريخ')">
+                    <i class="fas fa-landmark"></i>
+                    <h3>التاريخ</h3>
+                    <p>تقييمات أسبوعية لمادة التاريخ</p>
+                </div>
+                
+                <div class="subject-card" onclick="openWeeksModal('science', 'العلوم المتكاملة')">
+                    <i class="fas fa-flask"></i>
+                    <h3>العلوم المتكاملة</h3>
+                    <p>تقييمات أسبوعية لمادة العلوم المتكاملة</p>
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="weeks-modal" id="weeksModal">
+            <div class="weeks-container">
+                <div class="weeks-header">
+                    <h2 id="modalSubjectTitle">التقييمات الأسبوعية</h2>
+                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="weeks-list" id="weeksList">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>من نحن</h3>
+                    <p>أنا محمد مصطفى، طالب بالصف الأول الثانوي، وعملت هذا الموقع علشان أساعد زملائي الطلاب نوفر وقتنا في البحث عن الكتب والتقييمات.</p>
+                </div>
+                
+                <div class="social-section">
+                    <h4>وسائل التواصل</h4>
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/profile.php?id=100090831465254" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/mohamedmostafashen/" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://t.me/mohamedshen12" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>جميع الحقوق محفوظة &copy; محمد مصطفى عباس 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://t.me/mohamedshen12" class="telegram-float" target="_blank" aria-label="Telegram">
+        <div class="filled"></div>
+        <svg version="1.1" viewBox="0 0 100 100">
+            <path d="M95,9.9c-1.3-1.1-3.4-1.2-7-0.1c0,0,0,0,0,0c-2.5,0.8-24.7,9.2-44.3,17.3c-17.6,7.3-31.9,13.7-33.6,14.5c-1.9,0.6-6,2.4-6.2,5.2c-0.1,1.8,1.4,3.4,4.3,4.7c3.1,1.6,16.8,6.2,19.7,7.1c1,3.4,6.9,23.3,7.2,24.5c0.4,1.8,1.6,2.8,2.2,3.2c0.1,0.1,0.3,0.3,0.5,0.4c0.3,0.2,0.7,0.3,1.2,0.3c0.7,0,1.5-0.3,2.2-0.8c3.7-3,10.1-9.7,11.9-11.6c7.9,6.2,16.5,13.1,17.3,13.9c0,0,0.1,0.1,0.1,0.1c1.9,1.6,3.9,2.5,5.7,2.5c0.6,0,1.2-0.1,1.8-0.3c2.1-0.7,3.6-2.7,4.1-5.4c0-0.1,0.1-0.5,0.3-1.2c3.4-14.8,6.1-27.8,8.3-38.7c2.1-10.7,3.8-21.2,4.8-26.8c0.2-1.4,0.4-2.5,0.5-3.2C96.3,13.5,96.5,11.2,95,9.9z M30,58.3l47.7-31.6c0.1-0.1,0.3-0.2,0.4-0.3c0,0,0,0,0,0c0.1,0,0.1-0.1,0.2-0.1c0.1,0,0.1,0,0.2-0.1c-0.1,0.1-0.2,0.4-0.4,0.6L66,38.1c-8.4,7.7-19.4,17.8-26.7,24.4c0,0,0,0,0,0.1c0,0-0.1,0.1-0.1,0.1c0,0,0,0.1-0.1,0.1c0,0.1,0,0.1-0.1,0.2c0,0,0,0.1,0,0.1c0,0,0,0,0,0.1c-0.5,5.6-1.4,15.2-1.8,19.5c0,0,0,0,0-0.1C36.8,81.4,31.2,62.3,30,58.3z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    <script>
+        const downloadLinks = {
+            arabic: {
+                1: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T-W1.pdf",
+                2: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T-W%202.pdf",
+                3: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T_W3.pdf",
+                4: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T_W%204%20.pdf",
+                5: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_t_W5.pdf",
+                6: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T_W6.pdf",
+                7: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T_W7.pdf",
+                9: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T_W%209.pdf",
+                10: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_W_W10.pdf",
+                11: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Arabic_language_Secondary1_TR2_T-W11.pdf",
+            },
+            english: {
+                1: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary_TR1_T_W%201%20.pdf",
+                2: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_1Secondary_TR1_T_W%202.pdf",
+                3: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary1_TR%201%20_T_W%203%20.pdf",
+                4: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary1_TR1_T_W4.pdf",
+                5: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_1Secondary1_TR1_T_W%205.pdf",
+                7: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary1_TR2_T_W%207%20.pdf",
+                9: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary1_TR2_T_W9.pdf",
+                10: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary1_TR2_T_W10%20%20.pdf",
+                11: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/English_language_Secondary1_TR2_T_W%2011%20%20.pdf",
+            },
+            math: {
+                2: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W2.pdf",
+                3: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W3.pdf",
+                4: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W4.pdf",
+                5: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W5.pdf",
+                6: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W6.pdf",
+                7: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W7.pdf",
+                9: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W9.pdf",
+                10: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Math_ARABIC_Sec1_TR2_T_W10.pdf",
+            },
+            philosophy: {
+                1: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W_250204_225651.pdf",
+                2: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W2.pdf",
+                3: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W3_250219_141327.pdf",
+                4: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W4_250225_151203.pdf",
+                5: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W5_250225_151100.pdf",
+                6: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/philosophy&%20logic_w6.pdf",
+                7: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/philosophy&%20logic%20_ARABIC_1_Secondary_TR2.pdf",
+                9: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W9.pdf",
+                10: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W10.pdf",
+                11: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W11.pdf",
+                12: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/PhilosophyAND%20logic%20_ARABIC_Sec1_TR2_ALL_W12_250422_132039.pdf",
+            },
+            history: {
+                1: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W%201.pdf",
+                2: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W2.pdf",
+                3: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W3.pdf",
+                4: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W4.pdf",
+                5: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W5.pdf",
+                6: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W6.pdf",
+                7: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W7.pdf",
+                8: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W8.pdf",
+                9: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W9.pdf",
+                10: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W%2010.pdf",
+                11: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W%20%2011.pdf",
+                12: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/History_Sec1_TR2_T_%20W%20%2012.pdf",
+            },
+            science: {
+                1: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W1%20.pdf",
+                2: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W2.pdf",
+                3: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W3.pdf",
+                4: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W4.pdf",
+                5: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W5.pdf",
+                6: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W6.pdf",
+                7: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W7.pdf",
+                9: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W9.pdf",
+                10: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W10.pdf",
+                11: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W11.pdf",
+                12: "https://elearnningcontent.blob.core.windows.net/elearnningcontent/content/2025/Secondry/secondry1/Term2/Streem/Integrated%20science_ARABIC_Sec1_TR2_T_W12.pdf",
+            }
+        };
+
+        function openWeeksModal(subject, subjectName) {
+            document.getElementById('modalSubjectTitle').textContent = `تقييمات ${subjectName} الأسبوعية`;
+            const weeksList = document.getElementById('weeksList');
+            weeksList.innerHTML = '';
+            
+            for (let i = 1; i <= 15; i++) {
+                const weekItem = document.createElement('div');
+                weekItem.className = 'week-item';
+                
+                if (downloadLinks[subject] && downloadLinks[subject][i]) {
+                    weekItem.innerHTML = `
+                        <h4>الأسبوع ${i}</h4>
+                        <a href="${downloadLinks[subject][i]}" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i> تنزيل التقييم
+                        </a>
+                    `;
+                } else {
+                    weekItem.innerHTML = `
+                        <h4>الأسبوع ${i}</h4>
+                        <div class="no-link">لم يتم نشر التقييم بعد</div>
+                    `;
+                }
+                
+                weeksList.appendChild(weekItem);
+            }
+            
+            document.getElementById('weeksModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('weeksModal').style.display = 'none';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('weeksModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            if (newTheme === 'dark') {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+    </script>
 </body>
 </html>
